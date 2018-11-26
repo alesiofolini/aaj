@@ -1,10 +1,14 @@
 <html>
 <head>
+<title>AAJ Tool - where in maker</title>
 </head>
 <body>
+<a href="index.html">home</a>
+<br/>
 <textarea id="lista" rows="50" cols="100"></textarea>
-<button id="botonarmarlista" onclick="armarlista()">ok</button>
 <textarea id="listaarmada" rows="50" cols="100"></textarea>
+<br/>
+<button id="botonarmarlista" onclick="armarlista()">ok</button>
 <script>
 var lista = document.getElementById("lista");
 var listaarmadap = document.getElementById("listaarmada");
@@ -12,13 +16,17 @@ var listaarmadap = document.getElementById("listaarmada");
 var armarlista = function(){
 	var listavalue = lista.value;
 	var listarray = listavalue.split(/\n/g);
+	var sinduplicados = [];
+	for(var i = 0;i < listarray.length; i++){
+        if(sinduplicados.indexOf(listarray[i]) == -1){
+            sinduplicados.push(listarray[i])
+        }
+    }
 	var listarraycompletado = [];
-	for(var i=0;i<listarray.length;i++){
-		listarraycompletado.push("'");
-		listarraycompletado.push(listarray[i]);
-		listarraycompletado.push("'");
+	for(var i=0;i<sinduplicados.length;i++){
+		listarraycompletado.push("'"+sinduplicados[i].trim()+"'");
 	}
-	var listaposta = 'in ('+listarray.join()+')';
+	var listaposta = 'in ('+listarraycompletado.join()+')';
 	listaarmadap.innerHTML = listaposta;
 };
 </script>
