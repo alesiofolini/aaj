@@ -1,14 +1,23 @@
 <html>
 <head>
-<title>AAJ Tool - where in maker</title>
+<title>WHERE IN MAKER</title>
+<!-- minify -->
+<link href="https://unpkg.com/nes.css@0.0.2/css/nes.min.css" rel="stylesheet" />
+<!-- latest -->
+<link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
 </head>
-<body>
-<a href="index.html">home</a>
-<br/>
+<body style="padding:20">
+<h1>- WHERE IN MAKER -</h1>
+<section class="container">
+<div>
 <textarea id="lista" rows="20" cols="50"></textarea>
+<button id="botonarmarlista" onclick="armarlista()" class="btn is-primary">OK-></button></button>
 <textarea id="listaarmada" rows="20" cols="50"></textarea>
-<br/>
-<button id="botonarmarlista" onclick="armarlista()">ok</button>
+</div>
+</section>
+<div class="nes-container is-rounded" style="display:none; text-align:center; background-color:green; color:white;" id="ctc">
+<p class="nes-text">Copied to clipboard</p>
+</div>
 <script>
 var lista = document.getElementById("lista");
 var listaarmadap = document.getElementById("listaarmada");
@@ -28,6 +37,10 @@ var armarlista = function(){
 	}
 	var listaposta = 'in ('+listarraycompletado.join()+')';
 	listaarmadap.innerHTML = listaposta;
+	listaarmadap.select();
+	document.execCommand("copy");
+	var ctc = document.getElementById("ctc");
+	ctc.style.display = "block";
 };
 </script>
 </body>
