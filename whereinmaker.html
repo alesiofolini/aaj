@@ -10,7 +10,7 @@
 <h1>- WHERE IN MAKER -</h1>
 <section class="container">
 <div>
-<textarea id="lista" rows="20" cols="33"></textarea>
+<textarea id="lista" rows="20" cols="33" onfocus="limpiar()"></textarea>
 <button id="botonarmarlista" onclick="armarlista()" class="nes-btn is-success">OK-></button></button>
 <textarea id="listaarmada" rows="20" cols="33"></textarea>
 </div>
@@ -21,6 +21,7 @@
 <script>
 var lista = document.getElementById("lista");
 var listaarmadap = document.getElementById("listaarmada");
+var ctc = document.getElementById("ctc");
 var armarlista = function(){
 	var listavalue = lista.value;
 	var listarray = listavalue.split(/\n/g);
@@ -38,8 +39,13 @@ var armarlista = function(){
 	listaarmadap.innerHTML = listaposta;
 	listaarmadap.select();
 	document.execCommand("copy");
-	var ctc = document.getElementById("ctc");
 	ctc.style.display = "block";
+};
+
+var limpiar = function(){
+	lista.innerHTML = '';
+	listaarmadap.innerHTML = '';
+	ctc.style.display = "none";
 };
 </script>
 </body>
